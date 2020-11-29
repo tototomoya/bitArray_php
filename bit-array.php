@@ -3,7 +3,7 @@
 use chdemko\BitArray\BitArray;
 
 class State {
-    // 保存出来るのは8bitまで。
+    // 格納出来るのは8bitまで。
     private $STATELIST = array(
         '通常', '死亡',  '毒', '眠り', '石化', '混乱', '麻痺', '瀕死'
     );
