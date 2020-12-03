@@ -3,12 +3,12 @@
 use chdemko\BitArray\BitArray;
 
 class State {
-    private $STATELIST = array(
+    const STATELIST = array(
         '通常', '死亡',  '毒', '眠り', '石化', '混乱', '麻痺'
     );
 
     public function getStateNum(string $input) {
-        $num = array_search($input, $this->STATELIST);
+        $num = array_search($input, self::STATELIST);
         if ($num === false) {
             throw new Exception($input . " は定義されていないステータスです。");
             return;
@@ -17,17 +17,17 @@ class State {
     }
 
 	public function getCount() {
-		return count($this->STATELIST);
+		return count(self::STATELIST);
 	}
 
 	public function getValue($index) {
-		return $this->STATELIST[$index];
+		return self::STATELIST[$index];
 	}
 }
 
 class Player {
-    private $state = 0;
     private $state_instance;
+    private $state = 0;
 
     public function __construct() {
         $this->state_instance = new State();
@@ -60,7 +60,7 @@ try {
     $p->setState("通常");
     $p->setState("石化");
     $p->setState("死亡");
-    $p->delState("死亡");
+    $p->delState("通常");
     $p->setState("なし");
 } catch (Exception $e) {
     echo $e->getMessage() . ": " . $e->getLine() . "行目" . PHP_EOL;
