@@ -3,9 +3,8 @@
 use chdemko\BitArray\BitArray;
 
 class State {
-    // 格納出来るのは8bitまで。
     private $STATELIST = array(
-        '通常', '死亡',  '毒', '眠り', '石化', '混乱', '麻痺', '瀕死'
+        '通常', '死亡',  '毒', '眠り', '石化', '混乱', '麻痺'
     );
 
     public function getStateNum(string $input) {
@@ -26,7 +25,7 @@ class State {
 	}
 }
 
-class Player extends State {
+class Player {
     private $state = 0;
     private $state_instance;
 
@@ -60,7 +59,8 @@ $p = new Player();
 try {
     $p->setState("通常");
     $p->setState("石化");
-    $p->setState("瀕死");
+    $p->setState("死亡");
+    $p->delState("死亡");
     $p->setState("なし");
 } catch (Exception $e) {
     echo $e->getMessage() . ": " . $e->getLine() . "行目" . PHP_EOL;
